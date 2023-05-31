@@ -1,0 +1,3 @@
+main {
+    grid-template-areas: "title" "buttons" "footer";
+}

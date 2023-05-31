@@ -1,0 +1,10 @@
+main {
+    grid-template-areas: "title" "forms" "buttons";
+}
+
+main .actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    text-align: center;
+}

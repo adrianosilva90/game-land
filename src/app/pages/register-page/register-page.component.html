@@ -1,0 +1,40 @@
+<div class="content">
+    <aside><app-hero-img></app-hero-img></aside>
+    <main>
+        <header class="regtitle">
+            <div class="hdr">
+                <a routerLink=""><i class="fa-solid fa-angle-left"></i></a>
+                <h2>Novo <span>registro</span></h2>
+            </div>
+        </header>
+
+        <form>
+            <label for="reg-name">Nome</label>
+            <input type="text" id="reg-name" />
+
+            <label for="reg-mail">E-Mail</label>
+            <input type="email" id="reg-mail" />
+
+            <label for="reg-role">Cargo desejado</label>
+            <div class="role-div">
+                <select id="reg-role">
+                    <option value="0">- - - - - - - - - -</option>
+                    <option value="optA">Cargo 1</option>
+                    <option value="optB">Cargo 2</option>
+                    <option value="optC">Cargo 3</option>
+                    <option value="optD">Cargo 4</option>
+                </select>
+            </div>
+
+            <div class="curriculum">
+                <label for="reg-curriculum">Currículo</label>
+                <input type="text" id="reg-curriculum" />
+                <button><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+        </form>
+
+        <div class="actions">
+            <a href="">Registrar</a>
+        </div>
+    </main>
+</div>
