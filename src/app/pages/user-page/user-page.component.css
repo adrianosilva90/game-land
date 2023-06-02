@@ -1,0 +1,30 @@
+main {
+    grid-template-areas: "title" "status" "buttons";
+}
+
+main .actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    text-align: center;
+}
+
+main .actions a {
+    background-color: var(--warn-color);
+    margin-top: 3.4rem;
+}
+main .actions a:hover {
+    background-color: #FF6683;
+}
+
+main .status {
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
+@media (max-width: 499px) {
+    main .status {
+        margin-top: 2rem;
+        font-size: 2rem;
+    }
+}

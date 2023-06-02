@@ -1,3 +1,8 @@
+@keyframes dropDown {
+    from {top:50%;opacity:0}
+    to {top:100%;opacity:1}
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +17,10 @@
     --default-border-radius: 1.2rem;
     --bg-color: #282C33;
     --primary-color: #A6F750;
-    --secondary-color: #0A90FF;
+    --primary-color-sel: #C1F985;
+    --secondary-color: #0A91FF;
+    --warn-color: #FF244E;
+    --default-font: 'Roboto', sans-serif;
     --txt-color: #FFF;
 }
 
@@ -21,8 +29,9 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    overflow-x: hidden;
 
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--default-font);
     font-size: 1.4rem;
     background-color: var(--bg-color);
     color: var(--txt-color);
@@ -34,9 +43,9 @@ input:focus {
 }
 
 aside, main {
-    margin: 1rem;
+    margin: 2rem;
     width: 60rem;
-    min-height: calc(100vh - 2rem);
+    min-height: calc(100vh - 4rem);
 }
 
 aside {
@@ -52,7 +61,7 @@ aside h1 {
     text-align: center;
 }
 
-aside h1 span, main h2 span {
+aside h1 span, main :is(h2 span, .status span) {
     color: var(--primary-color);
 }
 
@@ -65,7 +74,7 @@ main {
     padding: 4.4rem 5.7rem;
 }
 
-main h2 {
+main :is(h2, .status) {
     /* max-width: 43rem; */
     font-size: 3rem;
     font-weight: 500;
@@ -89,6 +98,7 @@ main .actions a {
     color: var(--txt-color);
     background-color: var(--secondary-color);
     text-shadow: 0.2rem 0.2rem 0 #000;
+    transition: background-color .5s;
 
     display: flex;
     justify-content: center;
@@ -101,11 +111,18 @@ main .actions a + a {
     margin-top: 2rem;
 }
 
+main .actions a:hover {
+    background-color: #54B2FF;
+}
+main .actions a + a:hover {
+    background-color: var(--primary-color-sel);
+}
+
 main footer {
     grid-area: footer;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     text-align: center;
 }
 
@@ -119,6 +136,10 @@ main .regtitle .hdr {
 main .regtitle .hdr i {
     font-size: 2.4rem;
     color: var(--primary-color);
+    transition: color .5s;
+}
+main .regtitle .hdr i:hover {
+    color: var(--primary-color-sel);
 }
 
 main footer p{
@@ -127,9 +148,14 @@ main footer p{
 }
 
 main footer a{
+    display: inline-block;
     margin-top: .5rem;
     font-size: 1.8rem;
     color: #CCC;
+    transition: color .5s;
+}
+main footer a:hover{
+    color: var(--primary-color);
 }
 
 main form {
@@ -139,11 +165,12 @@ main form {
 
 main form label {
     display: block;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--default-font);
     font-size: 1.8rem;
     font-weight: 400;
     text-transform: lowercase;
-    margin: 1rem 0;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
 }
 
 /* main form select option {
@@ -177,7 +204,7 @@ main form .role-div {
     position: relative;
 }
 
-main form .role-div::after {
+/*main form .role-div::after {
     position: absolute;
     z-index: 1;
     top: 1.6rem;
@@ -186,8 +213,8 @@ main form .role-div::after {
     content: '\f107';
     font-family: 'Font Awesome 6 Free';
     font-weight: 600;
-    color: #0A90FF;
-}
+    color: var(--secondary-color);
+}*/
 
 main form .curriculum {
     position: relative;
@@ -195,52 +222,247 @@ main form .curriculum {
 
 main form input + button {
     position: absolute;
-    right: 2rem;
-    top: calc(2.7rem + 2rem);
+    right: 1.5rem;
+    top: calc(2.7rem + 1.5rem);
     background-color: transparent;
     border: none;
-    color: #0A90FF;
+    color: var(--secondary-color);
     font-size: 2.4rem;
     cursor: pointer;
 }
 
-/*
+main .status {
+    grid-area: status;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
 
-        .content {
-            width: 100%;
-            height: 100%;
-            display: grid;
-            grid-template-areas: 
-                ". . . ."
-                ". hero form ."
-                ". hero form ."
-                ". . . ."
-            ;
-            gap: 11.5rem;
-        }
+main .status .divline {
+    width: 100%;
+    height: .2rem;
+    margin: 3rem 0;
+    border: var(--default-border);
+    box-shadow: -0.2rem -0.2rem 0 rgba(30,30,30,.3), inset -0.2rem -0.2rem 0 rgba(30,30,30,.3);
+}
 
-        main, aside {
-            max-width: 60rem;
-            min-height: 52rem;
-        }
+main .status .info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+main .status .info div:first-child {
+    margin-right: 2rem;
+}
+main .status .info div + div {
+    max-width: calc(15vw - 2rem);
+    min-width: 0;
+    margin-left: auto;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 1.5rem;
+    margin-top: .85rem;
+    color: var(--primary-color);
+}
 
-        aside {
-            grid-area: hero;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+/* BIBLIOTECA SELECT.JS */
+/*the container must be positioned relative:*/
+.custom-select {
+    position: relative;
+    font-family: var(--default-font)/* Arial */;
+    font-size: 1.8rem;
+}
 
-        main header {
-            display: flex;
-            gap: 0 1.8rem;
-            align-items: center;
-        }
+.custom-select select {
+    display: none; /*hide original SELECT element:*/
+}
 
-        main header i {
-            font-size: 2.4rem;
-            color: #A6F750;
-        }
+.select-selected {
+    height: 5.5rem;
+    background: rgba(255,255,255,.2);
+    border: var(--default-border);
+    border-radius: var(--default-border-radius);
+    display: flex;
+    align-items: center;
+}
 
-*/
+/*style the arrow inside the select element:*/
+.select-selected:after {
+    width: 0;
+    height: 0;
+
+    position: absolute;
+    z-index: 1;
+    top: 1.6rem;
+    right: 4rem;
+    font-size: 2.4rem;
+    content: '\f107';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 600;
+    color: var(--secondary-color);
+    transform: rotate(0deg);
+    transition: color .5s;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+    transform: rotate(180deg);
+    color: var(--primary-color);
+    top: 3.8rem;
+    right: 2rem;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+    color: #ffffff;
+    padding: .8rem 1.6rem;
+    border: .1rem solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+    position: absolute;
+    animation: dropDown .5s;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+
+    background: rgba(0,0,0,.8);
+    border: var(--default-border);
+    border-radius: var(--default-border-radius);
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    color: var(--primary-color);
+}
+.same-as-selected::after {
+    position: absolute;
+    margin-top: -2rem;
+    right: 1rem;
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 600;
+    display: block;
+    color: var(--primary-color);
+}
+
+@media (max-width: 999px) {
+    .content {
+        flex-direction: column;
+    }
+    aside {
+        min-height: 100px;
+        margin-bottom: 0;
+    }
+    main {
+        width: calc(100% - 4rem);
+    }
+    aside .group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    aside .group img {
+        height: 10rem;
+    }
+    main .status .info div + div {
+        max-width: calc(50vw - 10rem);
+    }
+}
+@media (max-width: 599px) {
+    main .status .info div + div {
+        max-width: calc(42vw - 10rem);
+    }
+}
+@media (max-width: 499px) {
+    .content {
+        font-size: 1rem;
+    }
+    main {
+        padding: 3.7rem;
+        min-height: calc(100vh - 15rem);
+    }
+    aside h1 {
+        font-size: 3.2rem;
+    }
+    main :is(h2, .status) {
+        font-size: 2rem;
+        text-align: center;
+    }
+    main footer p{
+        font-size: 1.2rem;
+    }
+    main .actions a {
+        font-size: 2rem;
+    }
+    main footer a{
+        font-size: 1.4rem;
+    }
+    main .status .info {
+        flex-direction: column;
+    }
+    main .status .info div:first-child {
+        margin-right: 0;
+        font-size: 1.5rem;
+    }
+    main .status .info div + div {
+        max-width: calc(75vw - 55px);
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1.2rem;
+    }
+    main .status .divline {
+        margin: 1.5rem 0;
+    }
+    main form :is(input, select), .select-selected {
+        height: 3.5rem;
+        font-size: 1.4rem;
+    }
+    .select-selected:after {
+        top: .8rem;
+    }
+    .select-selected.select-arrow-active:after {
+        top: 3rem;
+    }
+    main form input + button {
+        top: calc(1.9rem + 1.5rem);
+        font-size: 2rem;
+        right: 1.8rem;
+    }
+    .select-items {
+        font-size: 1.4rem;
+    }
+    .same-as-selected::after {
+        margin-top: -1.5rem;
+    }
+}
+@media (max-width: 349px) {
+    main form label {
+        font-size: 1.4rem;
+    }
+    main form :is(input, select), .select-selected, .select-items {
+        font-size: 1.2rem;
+    }
+    main form input + button {
+        top: calc(1.4rem + 1.5rem);
+    }
+}
+@media (max-width: 319px) {
+    aside .group img {
+        height: 8rem;
+    }
+}

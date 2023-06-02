@@ -1,3 +1,20 @@
 main {
     grid-template-areas: "title" "buttons" "footer";
 }
+
+.we {
+    color: #FF5678;
+    padding-left: .3rem;
+    border-top-left-radius: .8rem;
+    border-bottom-left-radius: .8rem;
+}
+.form {
+    color: black;
+    padding-right: .3rem;
+    border-top-right-radius: .8rem;
+    border-bottom-right-radius: .8rem;
+}
+.we, .form {
+    background-color: white;
+    font-weight: bolder;
+}

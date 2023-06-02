@@ -10,15 +10,18 @@
 
         <form>
             <label for="reg-name">Nome</label>
-            <input type="text" id="reg-name" />
+            <input type="text" id="reg-name" autocomplete="off" />
 
             <label for="reg-mail">E-Mail</label>
-            <input type="email" id="reg-mail" />
+            <input type="email" id="reg-mail" autocomplete="off" />
+
+            <label for="reg-passwd">Senha</label>
+            <input type="password" id="reg-passwd" autocomplete="off" />
 
             <label for="reg-role">Cargo desejado</label>
-            <div class="role-div">
+            <div class="custom-select">
                 <select id="reg-role">
-                    <option value="0">- - - - - - - - - -</option>
+                    <option value="0">Escolha um cargo. . .</option>
                     <option value="optA">Cargo 1</option>
                     <option value="optB">Cargo 2</option>
                     <option value="optC">Cargo 3</option>
@@ -28,7 +31,7 @@
 
             <div class="curriculum">
                 <label for="reg-curriculum">Currículo</label>
-                <input type="text" id="reg-curriculum" />
+                <input type="text" id="reg-curriculum" autocomplete="off" />
                 <button><i class="fa-solid fa-circle-plus"></i></button>
             </div>
         </form>

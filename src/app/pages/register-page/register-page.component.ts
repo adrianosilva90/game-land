@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent {
-
+  ngOnInit() {
+    this.loadJsFile("../../../assets/select.js");
+  }
+  public loadJsFile(url: any) {  
+    let js0 = document.createElement('script');  
+    js0.src = url;  
+    js0.type = 'text/javascript';  
+    document.getElementsByTagName('head')[0].appendChild(js0);
+  }
 }
